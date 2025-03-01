@@ -1,0 +1,259 @@
+[gd_scene load_steps=10 format=3 uid="uid://nkxuxb8ds743"]
+
+[ext_resource type="Script" path="res://addons/cd_app_window/topbar.gd" id="1_dx8qj"]
+[ext_resource type="Script" path="res://addons/cd_app_window/window_main.gd" id="1_hhunl"]
+[ext_resource type="Texture2D" uid="uid://c1vodoa1ojeiv" path="res://addons/cd_app_window/minimize.svg" id="1_otnr6"]
+[ext_resource type="StyleBox" uid="uid://b52abfetmuiy7" path="res://addons/cd_app_window/window_content_panel.tres" id="2_btcuc"]
+[ext_resource type="Texture2D" uid="uid://bn64aij0c8mg0" path="res://addons/cd_app_window/maximize.svg" id="2_vwmjd"]
+[ext_resource type="Texture2D" uid="uid://cyjakcqdejxj0" path="res://addons/cd_app_window/close.svg" id="3_vpenu"]
+[ext_resource type="Texture2D" uid="uid://drf1236fukc2a" path="res://addons/cd_app_window/icon.svg" id="4_aet35"]
+[ext_resource type="Script" path="res://addons/cd_app_window/window_handles.gd" id="8_ttkc5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2y88"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 7
+border_width_top = 2
+border_width_right = 7
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="window_main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hhunl")
+metadata/_edit_lock_ = true
+
+[node name="window_layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+metadata/_edit_lock_ = true
+
+[node name="top_spacer" type="ColorRect" parent="window_layout"]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="window_content" type="PanelContainer" parent="window_layout"]
+unique_name_in_owner = true
+self_modulate = Color(0.12549, 0.12549, 0.12549, 1)
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_btcuc")
+metadata/_edit_lock_ = true
+
+[node name="window_controls" type="Control" parent="."]
+process_mode = 3
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="window_topbar" type="PanelContainer" parent="window_controls"]
+unique_name_in_owner = true
+self_modulate = Color(0.12549, 0.12549, 0.12549, 1)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.0
+grow_horizontal = 2
+size_flags_vertical = 0
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_j2y88")
+script = ExtResource("1_dx8qj")
+metadata/_edit_lock_ = true
+
+[node name="hbox" type="HBoxContainer" parent="window_controls/window_topbar"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="window_icon" type="TextureRect" parent="window_controls/window_topbar/hbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_aet35")
+expand_mode = 1
+
+[node name="window_title" type="Label" parent="window_controls/window_topbar/hbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "App Window"
+vertical_alignment = 1
+clip_text = true
+
+[node name="window_minimize_button" type="Button" parent="window_controls/window_topbar/hbox"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("1_otnr6")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="window_maximize_button" type="Button" parent="window_controls/window_topbar/hbox"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_vwmjd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="window_close_button" type="Button" parent="window_controls/window_topbar/hbox"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_vpenu")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="window_handles" type="Control" parent="window_controls"]
+unique_name_in_owner = true
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_ttkc5")
+metadata/_edit_lock_ = true
+
+[node name="right" type="Control" parent="window_controls/window_handles"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 10
+metadata/_edit_lock_ = true
+
+[node name="left" type="Control" parent="window_controls/window_handles"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 5.0
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 10
+metadata/_edit_lock_ = true
+
+[node name="top" type="Control" parent="window_controls/window_handles"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 9
+metadata/_edit_lock_ = true
+
+[node name="bottom" type="Control" parent="window_controls/window_handles"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 9
+metadata/_edit_lock_ = true
+
+[node name="top_right_corner" type="Control" parent="window_controls/window_handles"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -5.0
+offset_bottom = 5.0
+grow_horizontal = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 11
+metadata/_edit_lock_ = true
+
+[node name="bot_right_corner" type="Control" parent="window_controls/window_handles"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 12
+metadata/_edit_lock_ = true
+
+[node name="top_left_corner" type="Control" parent="window_controls/window_handles"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 0
+offset_right = 5.0
+offset_bottom = 5.0
+mouse_filter = 1
+mouse_default_cursor_shape = 12
+metadata/_edit_lock_ = true
+
+[node name="bot_left_corner" type="Control" parent="window_controls/window_handles"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_right = 5.0
+grow_vertical = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 11
+metadata/_edit_lock_ = true
+
+[node name="border_overlay" type="PanelContainer" parent="window_controls"]
+unique_name_in_owner = true
+self_modulate = Color(0.12549, 0.12549, 0.12549, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_btcuc")
+metadata/_edit_lock_ = true
